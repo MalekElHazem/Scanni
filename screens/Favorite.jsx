@@ -23,7 +23,7 @@ import { Linking } from "react-native";
 
 const qrImage = require("../assets/qr.jpg");
 
-const HistoryPageWithDesign = () => {
+const Favorite = () => {
   const [history, setHistory] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [editName, setEditName] = useState("");
@@ -96,13 +96,13 @@ const HistoryPageWithDesign = () => {
           style={styles.Button1}
           onPress={() => openEditDialog(item)}
         >
-          <MaterialIcons name="edit" size={24} color="#000" />
+          <MaterialIcons name="edit" size={24} color="#03c400" />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button2}
           onPress={() => handleDelete(item.id)}
         >
-          <Icon name="trash" size={24} color="#000" />
+          <Icon name="trash" size={24} color="#ff1e00" />
         </TouchableOpacity>
       </View>
     </View>
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 4,
-    color: "#00c8ff",
+    color: "#3498DB",
   },
   productDescription: {
     fontSize: 14,
@@ -270,4 +270,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HistoryPageWithDesign;
+export default Favorite;

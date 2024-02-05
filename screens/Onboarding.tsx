@@ -6,7 +6,7 @@ import {
   useWindowDimensions,
   View,
   ViewToken,
-} from 'react-native';
+} from "react-native";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -15,20 +15,17 @@ import Animated, {
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
-import { Button } from '../components/Button';
-import { Pagination } from '../components/Pagination';
-import { theme } from '../constants/theme';
-import { data, type Data } from '../data/screens';
-import screen from './screen';
-import React from 'react';
-import {FlatList as RNFlatList, FlatListProps} from 'react-native';
+import { Button } from "../components/Button";
+import { Pagination } from "../components/Pagination";
+import { theme } from "../constants/theme";
+import { data, type Data } from "../data/screens";
+import screen from "./screen";
+import React from "react";
+import { FlatList as RNFlatList, FlatListProps } from "react-native";
 
-import Start from './Start';
-
-
-
+import Start from "./Authenticate";
 
 const RenderItem = ({
   item,
@@ -113,7 +110,7 @@ const RenderItem = ({
   );
 };
 
-export function Onboarding({navigation}: {navigation: any}) {
+export function Onboarding({ navigation }: { navigation: any }) {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const flatListRef = useAnimatedRef<FlatList>();
 
@@ -154,15 +151,12 @@ export function Onboarding({navigation}: {navigation: any}) {
 
       <View style={styles.footerContainer}>
         <Pagination data={data} screenWidth={SCREEN_WIDTH} x={x} />
- 
-          <Button
-            flatListRef={flatListRef}
-            flatListIndex={flatListIndex}
-            dataLength={data.length}
-          />
 
-
-        
+        <Button
+          flatListRef={flatListRef}
+          flatListIndex={flatListIndex}
+          dataLength={data.length}
+        />
       </View>
     </View>
   );
@@ -176,26 +170,26 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     backgroundColor: theme.colors.backgroundColor,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   itemTitle: {
     color: theme.colors.textColor,
     fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 10,
   },
   itemText: {
     color: theme.colors.textColor,
-    textAlign: 'center',
+    textAlign: "center",
     lineHeight: 20,
     marginHorizontal: 30,
   },
   footerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     margin: 20,
   },
 });

@@ -10,9 +10,10 @@ import jsQR from "jsqr";
 import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { useIsFocused } from "@react-navigation/native";
 
 
-const HomeScreen = () => {
+const Scan = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [barCodeScannerEnabled, setBarCodeScannerEnabled] = useState(true);
   const [zoom, setZoom] = useState(0);
@@ -21,6 +22,8 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const cameraRef = useRef(null);
   const [scanned, setScanned] = useState(false);
+  const isFocused = useIsFocused();
+
 
 
   useEffect(() => {
@@ -46,6 +49,8 @@ const HomeScreen = () => {
 
   const handleRefresh = () => {
     setBarCodeScannerEnabled(true);
+    console.log('test' , barCodeScannerEnabled)
+
     setPickedImage(null); // Reset picked image state if needed
     // Reset other camera-related state if needed
     console.log("refresh");
@@ -134,7 +139,7 @@ const HomeScreen = () => {
               <FontAwesome5
                 name={flashOn ? "bolt" : "bolt"}
                 size={24}
-                color="#FFFFFF"
+                color="#ffffff"
               />
             </TouchableOpacity>
           </View>
@@ -145,7 +150,7 @@ const HomeScreen = () => {
               style={styles.pickImageButton}
               onPress={pickImage}
             >
-              <FontAwesome6 name="image" size={24} color="#FFFFFF" />
+              <FontAwesome6 name="image" size={24} color="#ffffff" />
             </TouchableOpacity>
           </View>
 
@@ -155,20 +160,31 @@ const HomeScreen = () => {
               style={styles.pickImageButton}
               onPress={flipcamera}
             >
-              <FontAwesome6 name="camera-rotate" size={24} color="#FFFFFF" />
+              <FontAwesome6 name="camera-rotate" size={24} color="#ffffff" />
             </TouchableOpacity>
           </View>
+
+          {/* refresh */}
+          {/* <View style={styles.pickImageButtonContainer}>
+            <TouchableOpacity
+              style={styles.pickImageButton}
+              onPress={handleRefresh}
+            >
+              <FontAwesome6 name="redo" size={24} color="#ffffff" />
+            </TouchableOpacity>
+            </View> */}
         </View>
-        {pickedImage ? (
-          (console.log("image l"),
-          (<Image source={{ uri: pickedImage }} style={styles.pickedImage} />))
-        ) : (
+       
+        {/*  */}
+      
+    
+        { isFocused &&
           <Camera
-            key={barCodeScannerEnabled} // Add key to force re-render
+           key={barCodeScannerEnabled} // Add key to force re-render
             type={cameraType}
             ref={cameraRef}
             zoom={zoom}
-            barCodeScannerEnabled={barCodeScannerEnabled}
+            barCodeScannerEnabled={handleBarCodeScanned}
             onBarCodeScanned={handleBarCodeScanned}
             style={styles.camera}
             flashMode={
@@ -176,32 +192,25 @@ const HomeScreen = () => {
                 ? Camera.Constants.FlashMode.torch
                 : Camera.Constants.FlashMode.off
             }
-          />
-        )}
+          />}
+         
 
         {/* zoom */}
         <View style={styles.sliderIconsContainer}>
-          <Icon name="search-minus" size={20} color="#FFFFFF" />
+          <Icon name="search-minus" size={20} color="#ffffff" />
           <Slider
             style={{ width: 300, height: 40, marginTop: -10 }}
             minimumValue={0}
             maximumValue={1}
             minimumTrackTintColor="#ffffff"
-            maximumTrackTintColor="#c4c0c0"
+            maximumTrackTintColor="#ffffff"
             onValueChange={(value) => setZoom(value)}
           />
-          <Icon name="search-plus" size={20} color="#FFFFFF" />
+          <Icon name="search-plus" size={20} color="#ffffff" />
         </View>
       </View>
 
-      {/* {!barCodeScannerEnabled && (
-        <TouchableOpacity
-          style={styles.rescanButton}
-          onPress={() => handleRefresh()}
-        >
-          <Text style={styles.buttonText}>Rescan</Text>
-        </TouchableOpacity>
-      )} */}
+   
 
       {/* Bottom Navigation Bar 
       <View style={styles.bottomNavbar}>
@@ -245,7 +254,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: "#012130",
+    backgroundColor: "#96dcff",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center", // Center the camera vertically
@@ -258,7 +267,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   rescanButton: {
-    backgroundColor: "blue",
+    backgroundColor: "ffffff",
     padding: 15,
     borderRadius: 10,
     margin: 20,
@@ -323,4 +332,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Scan;

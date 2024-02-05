@@ -9,7 +9,7 @@ export default function Settings( { navigation }) {
   const handleLogout = () => {
     // Add your logout logic here
     console.log('Logout');
-        navigation.navigate("Start");
+        navigation.navigate("Authenticate");
   };
 
   const test = () => {
@@ -31,8 +31,8 @@ const openAppSettings = () => {
     <View style={styles.container}>
         <Text>Settings</Text>
         <Button title="Logout" onPress={handleLogout} />
-        <Button title="openAppSettings" onPress={openAppSettings} />
-        <Button title="test" onPress={test} />
+        {/* <Button title="openAppSettings" onPress={openAppSettings} />
+        <Button title="test" onPress={test} /> */}
 
     </View>
   );
@@ -41,7 +41,7 @@ const openAppSettings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',  
+    backgroundColor: '#96dcff',  
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,

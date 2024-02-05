@@ -1,8 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import * as LocalAuthentication from 'expo-local-authentication'
+import { ImageBackground } from 'react-native';
 
-const Start = ({navigation,router}) => {
+
+const Authenticate = ({navigation,router}) => {
     const [isBiometricSupported, setIsBiometricSupported] = React.useState(false);
     const [fingerprint, setFingerprint] = useState(false)
 
@@ -26,7 +28,7 @@ const Start = ({navigation,router}) => {
                 cancelLabel: 'Cancel'
             });
             if(biometricAuth.success){
-                navigation.navigate("Hole")
+                navigation.navigate("TabNavigation")
             }
         } catch (error) {
             console.log(error)
@@ -34,7 +36,7 @@ const Start = ({navigation,router}) => {
     }
 
     return (
-        <View style={styles.start}>
+        <ImageBackground source={require('../assets/bg.jpg')} style={styles.start}>
             
             <View style={{justifyContent:"center",flex:1,alignItems:"center"}}>
                 {isBiometricSupported && fingerprint?(
@@ -42,7 +44,7 @@ const Start = ({navigation,router}) => {
                 ):(<View><Text>fingerprint not supported/ allocated</Text></View>)}
             </View>
 
-        </View>
+        </ImageBackground>
     )
 }
 
@@ -77,4 +79,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Start
+export default Authenticate

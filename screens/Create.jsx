@@ -65,6 +65,7 @@ export default function Create() {
     } finally {
       setIsDownloading(false); // Reset to false when download completes or errors
       console.log("Download finished");
+      alert("QR code saved to gallery");
     }
   };
 
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#eee",
+    backgroundColor: "#96dcff",
   },
   wrapper: {
     maxWidth: 300,

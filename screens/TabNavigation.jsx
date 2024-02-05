@@ -6,17 +6,17 @@ import Colors from '../constants/Colors';
 import ColorScreen from '../constants/ColorScreen';
 import * as Animatable from 'react-native-animatable';
 
-import HomeScreen from './HomeScreen';
-import History from './History';
+import Scan from './Scan';
+import Favorite from './Favorite';
 import Create from './Create';
 import Settings from './Settings';
 
 
 const TabArr = [
-  { route: 'HomeScreen', label: 'HomeScreen', type: Icons.MaterialCommunityIcons, activeIcon: 'qrcode-scan', inActiveIcon: 'line-scan', component: HomeScreen },
-  { route: 'Like', label: 'Like', type: Icons.MaterialIcons, activeIcon: 'favorite', inActiveIcon: 'favorite-border', component: History },
-  { route: 'Search', label: 'Search', type: Icons.MaterialCommunityIcons, activeIcon: 'pencil', inActiveIcon: 'pencil-outline', component: Create },
-  { route: 'Account', label: 'Account', type: Icons.Ionicons, activeIcon: 'settings-sharp', inActiveIcon: 'settings-outline', component: Settings },
+  { route: 'Scan', label: 'Scan', type: Icons.MaterialCommunityIcons, activeIcon: 'qrcode-scan', inActiveIcon: 'line-scan', component: Scan },
+  { route: 'Favorite', label: 'Favorite', type: Icons.MaterialIcons, activeIcon: 'favorite', inActiveIcon: 'favorite-border', component: Favorite },
+  { route: 'Create', label: 'Create', type: Icons.MaterialCommunityIcons, activeIcon: 'pencil', inActiveIcon: 'pencil-outline', component: Create },
+  { route: 'Settings', label: 'Settings', type: Icons.Ionicons, activeIcon: 'settings-sharp', inActiveIcon: 'settings-outline', component: Settings },
 ];
 
 const Tab = createBottomTabNavigator();
@@ -49,7 +49,7 @@ const TabButton = (props) => {
   )
 }
 
-export default function Hole() {
+export default function TabNavigation() {
   return (
     <Tab.Navigator
       screenOptions={{

@@ -21,7 +21,7 @@ const Result = ({ route, navigation }) => {
   };
 
   function handleRescan() {
-    navigation.navigate("Hole");
+    navigation.navigate("TabNavigation");
   }
 
   const handleSave = () => {

@@ -61,7 +61,7 @@ export function Button({
     if (!isLastScreen) {
       flatListRef.current?.scrollToIndex({ index: flatListIndex.value + 1 });
     }else{
-      navigator.navigate("Start" as never);
+      navigator.navigate("Authenticate" as never);
     }
   };
 
