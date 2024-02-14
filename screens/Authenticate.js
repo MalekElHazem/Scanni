@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import * as LocalAuthentication from 'expo-local-authentication'
 import { ImageBackground } from 'react-native';
+import { getUser } from '../data/Database';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const Authenticate = ({navigation,router}) => {
@@ -20,6 +22,16 @@ const Authenticate = ({navigation,router}) => {
         })();
     },[]);
 
+
+    const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // getUser((userData) => {
+    //   setUserData(userData);
+    // });
+  }, []);
+
+  
     const handle = async()=>{
         try {
             const biometricAuth = await LocalAuthentication.authenticateAsync({
@@ -36,14 +48,25 @@ const Authenticate = ({navigation,router}) => {
     }
 
     return (
-        <ImageBackground source={require('../assets/bg.jpg')} style={styles.start}>
+        <ImageBackground source={require('../assets/bg1.jpg')} style={styles.start}>
             
             <View style={{justifyContent:"center",flex:1,alignItems:"center"}}>
                 {isBiometricSupported && fingerprint?(
-                    <TouchableOpacity onPress={handle} ><Text style={styles.button}>Login</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.login} onPress={handle} >
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <MaterialIcons name="login" size={30} color="#fff" />
+                        <Text style={styles.text}>Login</Text>
+                        </View>
+                      </TouchableOpacity>
                 ):(<View><Text>fingerprint not supported/ allocated</Text></View>)}
             </View>
-
+            
+            {/* <View style={styles.row}>
+                <Text style={styles.cell}>{userData.id}</Text>
+                <Text style={styles.cell}>{userData.firstName}</Text>
+                <Text style={styles.cell}>{userData.lastName}</Text>
+                <Text style={styles.cell}>{userData.email}</Text>
+            </View> */}
         </ImageBackground>
     )
 }
@@ -68,15 +91,30 @@ const styles = StyleSheet.create({
     },
     button:{
         fontSize:23,
-        color:"black",
+        color:"#fff",
         backgroundColor:"#03bafc",
         height:50,
         width:200,
-        borderRadius:5,
+        borderRadius:20,
         textAlign:"center",
         textAlignVertical:"center",
         fontFamily:"Roboto",
     },
+    login: {
+        borderRadius: 20,
+        backgroundColor: '#0080ff',
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+      },
+      text: {
+        color: '#fff',
+        fontSize: 17,
+        // text bold
+        fontWeight: 'bold',
+        marginLeft: 10, 
+      },
 })
 
 export default Authenticate

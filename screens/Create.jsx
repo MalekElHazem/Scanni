@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Keyboard,
+  ImageBackground,
 } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import * as FileSystem from "expo-file-system";
@@ -82,7 +83,7 @@ export default function Create() {
   };
 
   return (
-    <View style={styles.container}>
+    <ImageBackground source={require('../assets/bg1.jpg')} style={styles.container}>
       <View style={styles.wrapper}>
         <Text style={styles.title}>QR Code Generator</Text>
         <Text style={styles.description}>
@@ -118,7 +119,7 @@ export default function Create() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -178,4 +179,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: "center",
   },
+
+  
 });

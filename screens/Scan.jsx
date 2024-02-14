@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Platform } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, Platform, ImageBackground } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { Camera } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
@@ -11,7 +11,6 @@ import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useIsFocused } from "@react-navigation/native";
-
 
 const Scan = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -130,7 +129,7 @@ const Scan = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ImageBackground source={require('../assets/bg1.jpg')} style={styles.container}>
       <View style={styles.content}>
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
           {/* flash */}
@@ -228,7 +227,7 @@ const Scan = () => {
         </TouchableOpacity>
       </View>
       */}
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -283,6 +282,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 20,
     marginTop: 20,
+    color: "#ffffff",
   },
 
   //flash

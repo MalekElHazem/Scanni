@@ -16,22 +16,54 @@ import { Onboarding } from "./screens/Onboarding";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Authenticate from "./screens/Authenticate";
+import RegisterPage from "./screens/register";
 import Scan from "./screens/Scan";
 import Result from "./screens/result";
 import TabNavigation from "./screens/TabNavigation";
 import AppNavigator from "./screens/AppNavigator";
+import { getUser } from "./data/Database";
+import Load from "./screens/Load";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [initialRoute, setInitialRoute] = useState(true);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Call getUser function when the component mounts
+    // getUser(userData => {
+    //   console.log(userData);
+    //   if (!userData || userData.length === 0) { // Check for null, undefined, or empty array
+    //     console.log("onboarding: ");
+    //     setInitialRoute(false);
+    //   }  
+    //   console.log("in : ", initialRoute);
+    // });
+  }, []); // Empty dependency array ensures that this effect runs only once, after the initial render
+  
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="OnBording">
+      
+      <Stack.Navigator initialRouteName = "OnBording">
+        {/* <Stack.Screen
+          name="Load"
+          component={Load}
+          options={{ headerShown: false }}
+        /> 
+        <Stack.Screen
+          name="RegisterPage"
+          component={RegisterPage}
+          options={{ headerShown: false }}
+        />*/}
         <Stack.Screen
           name="OnBording"
           component={Onboarding}
           options={{ headerShown: false }}
         />
+        
+
         <Stack.Screen
           name="Authenticate"
           component={Authenticate}

@@ -10,6 +10,7 @@ import {
   TextInput,
   Modal,
   Alert,
+  ImageBackground,
 } from "react-native";
 import {
   getAllQRCodes,
@@ -21,6 +22,12 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Linking } from "react-native";
 
+//import React, { useEffect, useState } from "react";
+//import { View, Text, FlatList, StyleSheet, Modal, Button, TextInput } from "react-native";
+import { useFocusEffect } from "@react-navigation/native"; // Import useFocusEffect from @react-navigation/native
+
+
+
 const qrImage = require("../assets/qr.jpg");
 
 const Favorite = () => {
@@ -29,9 +36,26 @@ const Favorite = () => {
   const [editName, setEditName] = useState("");
   const [deleteConfirmation, setDeleteConfirmation] = useState(null);
 
-  useEffect(() => {
+  // Use useFocusEffect within the screen component
+  // useFocusEffect(() => {
+  //   //loadHistory();
+  //   //console.log("History Loaded");
+  // });
+  useFocusEffect(
+  React.useCallback(() => {
     loadHistory();
-  }, []);
+      console.log("History Loaded");
+    return () => {
+      // Do something that should run on blur
+      
+    }
+  }, [])
+  );
+
+  // useEffect(() => {
+  //   loadHistory();
+  //   console.log("History Loaded");
+  // }, []);
 
   const loadHistory = () => {
     getAllQRCodes((qrCodes) => {
@@ -54,8 +78,27 @@ const Favorite = () => {
     setDeleteConfirmation(null);
   };
 
-  const openlink = (data) => {
-    Linking.openURL(data);
+  const openlink = (data, type) => {
+    
+    if (type === "URL") {
+      Linking.openURL(data);
+    } else if (type === "Email") {
+      const mailtoLink = `mailto:${data}`;
+      Linking.openURL(mailtoLink);
+    } else if (type === "Phone") {
+      const phoneNumber = `tel:${data}`;
+      Linking.openURL(phoneNumber);
+    } else if (type === "Location") {
+      Linking.openURL(data);
+    } else if (type === "Wi-Fi") {
+      // Implement logic to connect to the Wi-Fi network
+      connectToWiFi(wifiInfo.ssid, wifiInfo.password);
+    } else if (type === "Text") {
+      Linking.openURL(data);
+    } else {
+      Alert.alert("Unsupported data type", `Data type: ${type}`);
+    }
+
   };
 
   const openEditDialog = (item) => {
@@ -83,10 +126,11 @@ const Favorite = () => {
     <View style={styles.productCard}>
       <Image source={qrImage} style={styles.productImage} />
       <View style={styles.productInfo}>
-        <TouchableOpacity onPress={() => openlink(item.data)}>
+        <TouchableOpacity onPress={() => openlink(item.data, item.type)}>
           <Text style={styles.productName}>
             {index + 1}. {item.name}
           </Text>
+          <Text style={styles.producttitle}>{item.type}</Text>
           <Text style={styles.productDescription}>{item.data}</Text>
           <Text style={styles.productPrice}>{item.scanTime}</Text>
         </TouchableOpacity>
@@ -109,7 +153,7 @@ const Favorite = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <ImageBackground source={require('../assets/bg1.jpg')} style={styles.container}>
       <Text style={styles.historyText}>Favorite</Text>
       <FlatList
         data={history}
@@ -150,7 +194,7 @@ const Favorite = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -189,6 +233,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 4,
     color: "#3498DB",
+  },
+  producttitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#a261f2",
+    marginBottom: 4,
   },
   productDescription: {
     fontSize: 14,

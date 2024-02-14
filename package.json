@@ -28,11 +28,13 @@
     "expo-image-picker": "^14.7.1",
     "expo-local-authentication": "~13.8.0",
     "expo-media-library": "~15.9.1",
+    "expo-splash-screen": "~0.26.4",
     "expo-sqlite": "~13.2.2",
     "expo-status-bar": "~1.11.1",
     "expo-updates": "^0.24.9",
     "jsqr": "^1.4.0",
     "lottie-react-native": "6.5.1",
+    "mailcheck": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.73.2",
@@ -57,6 +59,7 @@
     "react-native-vector-icons": "^10.0.3",
     "react-native-view-shot": "^3.8.0",
     "react-native-web": "~0.19.6",
+    "react-native-wifi-reborn": "^4.10.1",
     "react-router-dom": "^6.21.3"
   },
   "devDependencies": {

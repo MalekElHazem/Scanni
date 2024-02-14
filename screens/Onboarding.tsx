@@ -21,11 +21,11 @@ import { Button } from "../components/Button";
 import { Pagination } from "../components/Pagination";
 import { theme } from "../constants/theme";
 import { data, type Data } from "../data/screens";
-import screen from "./screen";
 import React from "react";
 import { FlatList as RNFlatList, FlatListProps } from "react-native";
 
 import Start from "./Authenticate";
+//import { getUser } from '../data/Database';
 
 const RenderItem = ({
   item,
@@ -111,6 +111,13 @@ const RenderItem = ({
 };
 
 export function Onboarding({ navigation }: { navigation: any }) {
+  //console.log("sf"+getUser());
+  // if(getUser() != null) {
+  //   //console.log("22 " +getUser());
+  //   navigation.navigate("Authenticate");
+  // }
+
+  
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const flatListRef = useAnimatedRef<FlatList>();
 

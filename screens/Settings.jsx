@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableHighlight, Button, StatusBar, TouchableOpacity, BackHandler } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableHighlight, Button, StatusBar, TouchableOpacity, BackHandler, ImageBackground } from 'react-native';
 import { Linking, Platform } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 
@@ -28,13 +29,18 @@ const openAppSettings = () => {
 
 
   return (
-    <View style={styles.container}>
-        <Text>Settings</Text>
-        <Button title="Logout" onPress={handleLogout} />
-        {/* <Button title="openAppSettings" onPress={openAppSettings} />
+    <ImageBackground source={require('../assets/bg1.jpg')} style={styles.container}>
+        {/* <Text>Settings</Text>
+        <Button style={styles.logout} title="Logout" onPress={handleLogout} />
+        <Button title="openAppSettings" onPress={openAppSettings} />
         <Button title="test" onPress={test} /> */}
-
-    </View>
+        <TouchableOpacity style={styles.logout} onPress={handleLogout} >
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <MaterialIcons name="logout" size={30} color="#fff" />
+          <Text style={styles.text}>Logout</Text>
+        </View>
+          </TouchableOpacity>
+    </ImageBackground>
   );
 }
 
@@ -45,5 +51,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+  },
+  logout: {
+    borderRadius: 20,
+    backgroundColor: '#f00000',
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 17,
+    // text bold
+    fontWeight: 'bold',
+    marginLeft: 10, 
   },
 });
